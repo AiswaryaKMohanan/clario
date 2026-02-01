@@ -7,7 +7,8 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
   try {
     const { name, email, password, role } = await req.json();
-
+    console.log(req,'req');
+    
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -28,6 +29,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "User created", user: { id: user.id, email: user.email, role: user.role } });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
