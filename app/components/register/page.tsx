@@ -12,7 +12,7 @@ export default function RegisterPage() {
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
-
+    
     const res = await fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
